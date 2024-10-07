@@ -13,6 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Get the secrets from bitwarden
+      - name: Get Secrets
+        uses: bitwarden/sm-action@v2
+        with:
+          access_token: ${{ secrets.BW_ACCESS_TOKEN }}
+          secrets: |
+            78906cd6-164a-4721-8f7c-b20200862d75 > NUGET_GALLERY_API
+            
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
@@ -41,4 +49,4 @@ jobs:
 
       # Publish the package to NuGet
       - name: Publish package to NuGet
-        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_GALLERY_API }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ env.NUGET_GALLERY_API }} --source https://api.nuget.org/v3/index.json
