@@ -17,7 +17,7 @@ jobs:
       - name: Get Secrets
         uses: bitwarden/sm-action@v2
         with:
-          access_token: ${{ secrets.BW_ACCESS_TOKEN }}
+          access_token: ${{ secrets.BW_ACCESSTOKEN }}
           secrets: |
             78906cd6-164a-4721-8f7c-b20200862d75 > NUGET_GALLERY_API
             
